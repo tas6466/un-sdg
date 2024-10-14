@@ -23,32 +23,50 @@ export class unSdg extends DDDSuper(LitElement) {
     return [super.styles,
     css`
       :host {
+        --un-sdg-goal-1: rgb(235, 28, 44);
+        --un-sdg-goal-2: rgb(210, 160, 42);
+        --un-sdg-goal-3: rgb(44, 155, 72);
+        --un-sdg-goal-4: rgb(194, 31, 51);
+        --un-sdg-goal-5: rgb(239, 64, 42);
+        --un-sdg-goal-6: rgb(0, 173, 216);
+        --un-sdg-goal-7: rgb(253, 183, 19);
+        --un-sdg-goal-8: rgb(143, 23, 55);
+        --un-sdg-goal-9: rgb(243, 109, 36);
+        --un-sdg-goal-10: rgb(224, 21, 131);
+        --un-sdg-goal-11: rgb(249, 157, 37);
+        --un-sdg-goal-12: rgb(207, 141, 42);
+        --un-sdg-goal-13: rgb(72, 119, 61);
+        --un-sdg-goal-14: rgb(0, 125, 187);
+        --un-sdg-goal-15: rgb(63, 175, 73);
+        --un-sdg-goal-16: rgb(1, 85, 138);
+        --un-sdg-goal-17: rgb(25, 54, 103);
+
         display: block;
         color: var(--ddd-theme-primary);
         background-color: var(--ddd-theme-accent);
         font-family: var(--ddd-font-navigation);
         font-size: var(--un-sdg-font-size, var(--ddd-font-size-s));
       }
-      .wrapper {
+      .svg-wrapper {
         margin: var(--ddd-spacing-2);
         padding: var(--ddd-spacing-4);
       }
-      div {
-        padding: 0;
-        margin: 0;
+      img {
+        width: 100%;
+        height: 100%
       }
     `];
   }
 
   updated(changedProperties) {
     if (changedProperties.has('goal')) {
-      this.updateAlt();
+      this.updateElements();
     }
   }
 
-  updateAlt() { // combine color, image, and label
+  updateElements() { // combine color, image, and label
     const goal = this.getAttribute('goal');
-    imgSrc = new URL(`../public/svgs/${this.goal}.svg`, import.meta.url).href;
+    imgSrc = new URL(`../lib/svgs/${this.goal}.svg`, import.meta.url).href;
     
     switch (goal) {
       case 'circle':
@@ -107,11 +125,24 @@ export class unSdg extends DDDSuper(LitElement) {
         break;
       case '17':
         this.label = "Goal 17: Partnerships for the goals";
-        break; 
-  }
+        break;
+    }
+  }  
 
-  render() {
-    return html;
+  render () {
+    return html`
+    <style>
+        :host {
+          --width: ${this.width};
+          --height: ${this.height};
+        }
+       </style>
+      <!-- Updates the background-color according to the associated variable goal color -->
+      <!-- background-color is set to white for circle.png and all.svg since it's set to white on :host -->
+      <div class="svg-wrapper" 
+        style="background-color: var(--un-sdg-goal-${this.goal});">
+      </div>
+    `;          
   }
 
   static get haxProperties() {
