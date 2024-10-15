@@ -53,7 +53,7 @@ export class unSdg extends DDDSuper(LitElement) {
         --un-sdg-goal-16: rgb(1, 85, 138);
         --un-sdg-goal-17: rgb(25, 54, 103);
 
-        display: block;
+        display: inline-block;
         color: var(--ddd-theme-primary);
         background-color: var(--ddd-theme-accent);
         font-family: var(--ddd-font-navigation);
@@ -180,14 +180,12 @@ export class unSdg extends DDDSuper(LitElement) {
   render () {
     return html`
     <style>
-        :host {
-          --width: ${this.width};
-          --height: ${this.height};
-        }
-       </style>
-      <!-- Updates the background-color according to the associated variable goal color -->
-      <!-- background-color is set to white for circle.png and all.svg since it's set to white on :host -->
-      <div class="svg-wrapper" style="background-color: ${this.color};">
+      :host {
+        --width: ${this.width};
+        --height: ${this.height};
+      }
+    </style>
+    <div class="svg-wrapper" style="background-color: ${this.color};">
       ${this.colorOnly ? `` : 
           html`
             <img 
@@ -196,7 +194,7 @@ export class unSdg extends DDDSuper(LitElement) {
               fetchpriority="${this.fetchPriority}"
             />
         `}
-      </div>
+    </div>
     `;          
   }
 
