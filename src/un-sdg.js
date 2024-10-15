@@ -1,24 +1,24 @@
 import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
 
-export class unSdg extends DDDSuper(LitElement) {
+export class unSdg extends DDDSuper(LitElement) { // define element and extend LitElement and DDDSuper
 
   static get tag() {
     return "un-sdg";
   }
 
-  constructor() {
+  constructor() { // initialize variables
     super();
-    this.goal = "circle";
+    this.goal = "circle"; // default goal to display
     this.label = "";
     this.width = "254px";
     this.height = "254px";
     this.fetchPriority = "low";
     this.colorOnly = false;
-    this.image = "";
+    this.image = ""; // default image
   }
 
-  static get properties() {
+  static get properties() { // variable properties
     return {
       goal: { type: String, reflect: true },
       label: { type: String},
@@ -34,7 +34,7 @@ export class unSdg extends DDDSuper(LitElement) {
   static get styles() {
     return [super.styles,
     css`
-      :host {
+      :host { // colors and other style displays of the goals
         --un-sdg-goal-1: rgb(235, 28, 44);
         --un-sdg-goal-2: rgb(210, 160, 42);
         --un-sdg-goal-3: rgb(44, 155, 72);
@@ -70,13 +70,13 @@ export class unSdg extends DDDSuper(LitElement) {
     `];
   }
 
-  updated(changedProperties) {
+  updated(changedProperties) { // update elements when something changes
     if (changedProperties.has('goal')) {
       this.updateElements();
     }
   }
 
-  updateElements() { // combine color, image, and label
+  updateElements() { // update color, image, and label for each goal/circle/all
     const goal = this.getAttribute('goal');
     switch (goal) {
       case 'circle':
@@ -177,16 +177,16 @@ export class unSdg extends DDDSuper(LitElement) {
     }
   }  
 
-  render () {
+  render () { // render width and height for svgs
     return html`
     <style>
       :host {
-        --width: ${this.width};
+        --width: ${this.width}; 
         --height: ${this.height};
       }
     </style>
     <div class="svg-wrapper" style="background-color: ${this.color};">
-      ${this.colorOnly ? `` : 
+      ${this.colorOnly ? `` : // if colorOnly is true, no img tag is rendered, if colorOnly is false, img is rendered with src, alt, and fetchpriority
           html`
             <img 
               src = "${this.image}"
@@ -198,7 +198,7 @@ export class unSdg extends DDDSuper(LitElement) {
     `;          
   }
 
-  static get haxProperties() {
+  static get haxProperties() { // HAX properties for the component
     return new URL(`./lib/${this.tag}.haxProperties.json`, import.meta.url).href;
   }
 }

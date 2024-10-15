@@ -38,7 +38,7 @@
     <h1>un-sdg</h1>
     <button id="random">Randomize Goal</button>
     <script>
-      document.querySelector('#random').addEventListener('click', function(event) {
+      document.querySelector('#random').addEventListener('click', function(event) { // function to generate random sdg by random number
         const randomNumber = Math.floor(Math.random() * 17) + 1; 
         const sdg = document.getElementById('random-sdg');
         sdg.setAttribute('goal', randomNumber);
@@ -50,7 +50,6 @@
       width="400px"
       height="400px"
       label="overridden alt text"
-      loading="eager"
       fetchpriority="high"
     ></un-sdg>
 
