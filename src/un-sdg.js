@@ -13,7 +13,6 @@ export class unSdg extends DDDSuper(LitElement) {
     this.label = "";
     this.width = "254px";
     this.height = "254px";
-    this.loading = "lazy";
     this.fetchPriority = "low";
     this.colorOnly = false;
     this.image = "";
@@ -26,7 +25,6 @@ export class unSdg extends DDDSuper(LitElement) {
       color: { type: String },
       width: { type: String },
       height: { type: String },
-      loading: { type: String, reflect: true },
       fetchPriority: { type: String, reflect: true},
       colorOnly: { type: Boolean },
       image: { type: String }
@@ -189,8 +187,15 @@ export class unSdg extends DDDSuper(LitElement) {
        </style>
       <!-- Updates the background-color according to the associated variable goal color -->
       <!-- background-color is set to white for circle.png and all.svg since it's set to white on :host -->
-      <div class="svg-wrapper" 
-        style="background-color: var(--un-sdg-goal-${this.goal});">
+      <div class="svg-wrapper" style="background-color: ${this.color};">
+      ${this.colorOnly ? `` : 
+          html`
+            <img 
+              src = "${this.image}"
+              alt = "${this.label}"
+              fetchpriority="${this.fetchPriority}"
+            />
+        `}
       </div>
     `;          
   }
