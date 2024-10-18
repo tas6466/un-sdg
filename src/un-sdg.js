@@ -14,7 +14,7 @@ export class unSdg extends DDDSuper(LitElement) { // define element and extend L
     this.width = "254px";
     this.height = "254px";
     this.fetchPriority = "low";
-    this.loading = "lazy";
+    this.loading = "eager";
     this.colorOnly = false;
     this.image = ""; // default image
   }
@@ -53,14 +53,14 @@ export class unSdg extends DDDSuper(LitElement) { // define element and extend L
         --un-sdg-goal-15: rgb(63, 175, 73);
         --un-sdg-goal-16: rgb(1, 85, 138);
         --un-sdg-goal-17: rgb(25, 54, 103);
-
+        
         display: inline-block;
         color: var(--ddd-theme-primary);
         background-color: var(--ddd-theme-accent);
         font-family: var(--ddd-font-navigation);
         font-size: var(--un-sdg-font-size, var(--ddd-font-size-s));
-      } 
-      .svg-wrapper {
+      }
+      .sdg-wrapper {
         margin: var(--ddd-spacing-4);
         padding: var(--ddd-spacing-4);
         width: var(--width, 254px);
@@ -188,7 +188,7 @@ export class unSdg extends DDDSuper(LitElement) { // define element and extend L
         --height: ${this.height};
       }
     </style>
-    <div class="svg-wrapper" style="background-color: ${this.color};">
+    <div class="sdg-wrapper" style="background-color: var(--un-sdg-goal-${this.goal})">
       ${this.colorOnly ? `` : // if colorOnly is true, no img tag is rendered, if colorOnly is false, img is rendered with src, alt, and fetchpriority
           html`
             <img 
@@ -198,7 +198,7 @@ export class unSdg extends DDDSuper(LitElement) { // define element and extend L
             />
         `}
     </div>
-    `;          
+    `;     
   }
 
   static get haxProperties() { // HAX properties for the component
