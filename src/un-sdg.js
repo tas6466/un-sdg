@@ -14,7 +14,7 @@ export class unSdg extends DDDSuper(LitElement) { // define element and extend L
     this.width = "254px";
     this.height = "254px";
     this.fetchPriority = "low";
-    this.loading = "eager";
+    this.loading = "lazy";
     this.colorOnly = false;
     this.image = ""; // default image
   }
@@ -27,7 +27,7 @@ export class unSdg extends DDDSuper(LitElement) { // define element and extend L
       width: { type: String },
       height: { type: String },
       fetchPriority: { type: String, reflect: true},
-      colorOnly: { type: Boolean },
+      colorOnly: { type: Boolean, reflect: true },
       image: { type: String }
     };
   }
@@ -36,6 +36,7 @@ export class unSdg extends DDDSuper(LitElement) { // define element and extend L
     return [super.styles,
     css`
       :host { // colors and other style displays of the goals
+        --un-sdg-goal-1: rgb(235, 28, 44);
         --un-sdg-goal-1: rgb(235, 28, 44);
         --un-sdg-goal-2: rgb(210, 160, 42);
         --un-sdg-goal-3: rgb(44, 155, 72);
@@ -68,7 +69,7 @@ export class unSdg extends DDDSuper(LitElement) { // define element and extend L
       }
       img {
         width: 100%;
-        height: 100%
+        height: 100%;
       }
     `];
   }
@@ -169,12 +170,12 @@ export class unSdg extends DDDSuper(LitElement) { // define element and extend L
         break;
       case 'circle':
         this.label = "Sustainable developments logo";
-        this.color = "white";
+        this.color = "var(--ddd-theme-default-white)";
         this.image = new URL(`../lib/svgs/circle.png`, import.meta.url).href;
         break;
       case 'all':
         this.label = "All Sustainable Development Goals";
-        this.color = "white";
+        this.color = "var(--ddd-theme-default-white)";
         this.image = new URL(`../lib/svgs/all.svg`, import.meta.url).href;
         break;
     }
@@ -191,7 +192,7 @@ export class unSdg extends DDDSuper(LitElement) { // define element and extend L
     <div class="sdg-wrapper" style="background-color: var(--un-sdg-goal-${this.goal})">
       ${this.colorOnly ? `` : // if colorOnly is true, no img tag is rendered, if colorOnly is false, img is rendered with src, alt, and fetchpriority
           html`
-            <img 
+            <img
               src = "${this.image}"
               alt = "${this.label}"
               fetchpriority="${this.fetchPriority}"
