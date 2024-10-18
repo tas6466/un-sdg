@@ -14,6 +14,7 @@ export class unSdg extends DDDSuper(LitElement) { // define element and extend L
     this.width = "254px";
     this.height = "254px";
     this.fetchPriority = "low";
+    this.loading = "lazy";
     this.colorOnly = false;
     this.image = ""; // default image
   }
@@ -21,7 +22,7 @@ export class unSdg extends DDDSuper(LitElement) { // define element and extend L
   static get properties() { // variable properties
     return {
       goal: { type: String, reflect: true },
-      label: { type: String},
+      label: { type: String },
       color: { type: String },
       width: { type: String },
       height: { type: String },
@@ -58,10 +59,12 @@ export class unSdg extends DDDSuper(LitElement) { // define element and extend L
         background-color: var(--ddd-theme-accent);
         font-family: var(--ddd-font-navigation);
         font-size: var(--un-sdg-font-size, var(--ddd-font-size-s));
-      }
+      } 
       .svg-wrapper {
-        margin: var(--ddd-spacing-2);
+        margin: var(--ddd-spacing-4);
         padding: var(--ddd-spacing-4);
+        width: var(--width, 254px);
+        height: var(--height, 254px);
       }
       img {
         width: 100%;
@@ -79,16 +82,6 @@ export class unSdg extends DDDSuper(LitElement) { // define element and extend L
   updateElements() { // update color, image, and label for each goal/circle/all
     const goal = this.getAttribute('goal');
     switch (goal) {
-      case 'circle':
-        this.label = "Sustainable developments logo";
-        this.color = "white";
-        this.image = new URL(`../lib/svgs/circle.png`, import.meta.url).href;
-        break;
-      case 'all':
-        this.label = "All Sustainable Development Goals";
-        this.color = "white";
-        this.image = new URL(`../lib/svgs/all.svg`, import.meta.url).href;
-        break;
       case '1':
         this.label = "Goal 1: No poverty";
         this.color = "var(--un-sdg-goal-1)";
@@ -173,6 +166,16 @@ export class unSdg extends DDDSuper(LitElement) { // define element and extend L
         this.label = "Goal 17: Partnerships for the goals";
         this.color = "var(--un-sdg-goal-17)";
         this.image = new URL(`../lib/svgs/goal-17.svg`, import.meta.url).href;
+        break;
+      case 'circle':
+        this.label = "Sustainable developments logo";
+        this.color = "white";
+        this.image = new URL(`../lib/svgs/circle.png`, import.meta.url).href;
+        break;
+      case 'all':
+        this.label = "All Sustainable Development Goals";
+        this.color = "white";
+        this.image = new URL(`../lib/svgs/all.svg`, import.meta.url).href;
         break;
     }
   }  

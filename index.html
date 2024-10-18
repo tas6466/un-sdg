@@ -24,10 +24,12 @@
     un-sdg:hover {
       box-shadow: var(--ddd-boxShadow-sm);
     }
-    #example {
-      --un-sdg-font-size: var(--ddd-font-size-l);
-      background-color: var(--ddd-accent-2);
-      color: var(--ddd-primary-17);
+    #random {
+      margin: var(--ddd-spacing-2);
+      padding: var(--ddd-spacing-2);
+      font-size: var(--ddd-font-size-md);
+      font-family: var(--ddd-font-navigation);
+      border-radius: var(--ddd-radius-sm);
     }
   </style>
   <title>un-sdg</title>
@@ -36,32 +38,18 @@
 <body>
   <div id="demo">
     <h1>un-sdg</h1>
-    <button id="random">Randomize Goal</button>
+    <h2>Goals 1-17, Circle, and All</h2>
+    <button id="random">Randomize Goal 1</button>
     <script>
       document.querySelector('#random').addEventListener('click', function(event) { // function to generate random sdg by random number
         const randomNumber = Math.floor(Math.random() * 17) + 1; 
-        const sdg = document.getElementById('random-sdg');
+        const sdg = document.getElementById('goal1');
         sdg.setAttribute('goal', randomNumber);
       });
     </script>
-    <un-sdg 
-      id="random-sdg"
-      goal="2" 
-      width="400px"
-      height="400px"
-      label="overridden alt text"
-      fetchpriority="high"
-    ></un-sdg>
 
-    <un-sdg 
-      label="overridden alt text"
-    ></un-sdg>
-
-    <h2>un-sdg 1-17, circle, and all</h2>
     <div class="sdc-wrapper">
-      <un-sdg goal="circle"></un-sdg>
-      <un-sdg goal="all"></un-sdg>
-      <un-sdg goal="1"></un-sdg>
+      <un-sdg goal="1" id ="goal1"></un-sdg>
       <un-sdg goal="2"></un-sdg>
       <un-sdg goal="3"></un-sdg>
       <un-sdg goal="4"></un-sdg>
@@ -78,12 +66,12 @@
       <un-sdg goal="15"></un-sdg>
       <un-sdg goal="16"></un-sdg>
       <un-sdg goal="17"></un-sdg>
+      <un-sdg goal="circle"></un-sdg>
+      <un-sdg goal="all"></un-sdg>
     </div>
 
-    <h2>un-sdg 1-17, circle, and all with colorOnly set to "true"</h2>
+    <h2>Color Only</h2>
     <div class="sdc-wrapper">
-      <un-sdg goal="circle" colorOnly="true"></un-sdg>
-      <un-sdg goal="all" colorOnly="true"></un-sdg>
       <un-sdg goal="1" colorOnly="true"></un-sdg>
       <un-sdg goal="2" colorOnly="true"></un-sdg>
       <un-sdg goal="3" colorOnly="true"></un-sdg>
@@ -101,6 +89,8 @@
       <un-sdg goal="15" colorOnly="true"></un-sdg>
       <un-sdg goal="16" colorOnly="true"></un-sdg>
       <un-sdg goal="17" colorOnly="true"></un-sdg>
+      <un-sdg goal="circle" colorOnly="true"></un-sdg>
+      <un-sdg goal="all" colorOnly="true"></un-sdg>
     </div>
   </div>
   <script type="module" src="./src/un-sdg.js"></script>  
